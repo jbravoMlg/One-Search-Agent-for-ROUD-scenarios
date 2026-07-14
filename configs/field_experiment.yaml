@@ -1,0 +1,26 @@
+experiment:
+  name: jemerg24
+  analysis_interval_seconds: approximately 288
+  takeoff_offset_seconds: 71
+  landing_offset_seconds: 10
+
+ground_truth:
+  P1: [36.71678533, -4.48830800, 94.70]
+  X4: [36.71680367, -4.48832033, 94.70]
+
+ranging_model:
+  p0_dbm: -45.0
+  path_loss_exponent: 2.0
+  reference_distance_m: 1.0
+
+estimator:
+  mode: Huber
+  maximum_iterations: 40
+  observation_window_per_target: 40
+  minimum_observations: 3
+  output_dimensions: 2
+
+post_processing:
+  median_window_per_target: 20
+
+altitude_subsets_wgs84_m: [0, 105, 115]

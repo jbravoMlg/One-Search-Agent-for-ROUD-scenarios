@@ -1,0 +1,6 @@
+# Install these into a Python environment that already has ROS 2 Humble/rclpy.
+flask>=2.1
+numpy>=1.21
+pandas>=1.3
+pyproj>=3.3
+scipy>=1.7

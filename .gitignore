@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+.coverage
+htmlcov/
+*.log
+*.aux
+*.out
+*.pdf
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+robot_position.kml
+analysis/outputs/
+
+# SARFIS/MATLAB generated or request-only artifacts
+*.asv
+*.mex*
+/sarfis/MAT files/
+/sarfis/resources/
+/sarfis/works/
+/sarfis/DEM files/*.xyz
+/sarfis/DEM files/*.mat
+/sarfis/DEM files/*.tif
+/sarfis/DEM files/*.tiff
+*.mp4
+*.mov
+*.avi

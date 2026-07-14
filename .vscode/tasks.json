@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Test repository contract",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": ["-m", "pytest", "tests"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run altitude sweep",
+      "type": "shell",
+      "command": "./tools/run_altitude_sweep.sh",
+      "options": {
+        "env": {
+          "PYTHON": "${workspaceFolder}/.venv/bin/python",
+          "MPLBACKEND": "Agg"
+        }
+      },
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

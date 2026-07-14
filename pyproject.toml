@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "osa-roud-localization"
+version = "0.1.0"
+description = "One Search Agent Wi-Fi FTM localization in ROUD environments"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{name = "Robotics and Mechatronics Group, University of Malaga"}]
+dependencies = [
+  "flask>=2.1",
+  "geopy>=2.2",
+  "matplotlib>=3.5",
+  "numpy>=1.21",
+  "pandas>=1.3",
+  "pyproj>=3.3",
+  "rosbags>=0.11",
+  "scipy>=1.7",
+]
+
+[project.urls]
+Repository = "https://github.com/jbravoMlg/One-Search-Agent-for-ROUD-scenarios"
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+exclude = ["data"]

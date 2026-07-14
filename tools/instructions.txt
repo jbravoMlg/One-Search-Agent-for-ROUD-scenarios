@@ -1,0 +1,37 @@
+# Comparative Report: Real-Time Data vs. Post-Processed Data
+
+## **1. General Overview**
+- **Real-Time Bag** (`rosbag2_2024_06_14-09_04_54_0.db3`): Captured raw data during the UAV flight. Topics are unfiltered and directly recorded from sensors and estimators.
+- **Post-Processed Bag** (`jemerg24-filtered_0.db3`): Derived from the real-time bag by applying a **median filter** over 20 consecutive data points for multilateration topics (`P1` and `X4`).
+
+## **2. Key Differences**
+
+| **Aspect**            | **Real-Time Bag**                                       | **Post-Processed Bag**                                 |
+|-----------------------|--------------------------------------------------------|-------------------------------------------------------|
+| **Size**              | 1.3 MiB                                               | 430.9 KiB                                             |
+| **Duration**          | 368.404 s                                             | 368.303 s                                             |
+| **Messages**          | 5220                                                  | 2889                                                  |
+| **Multilateration Topics** | `/geo_multilateration_fx8_1f` (373 messages)          | `/FX8/multilateration_P1filtered` (171 messages)<br>`/FX8/multilateration_X4filtered` (164 messages) |
+
+## **3. Topic-Specific Details**
+- **Real-Time Data**: Contains raw multilateration data in `/geo_multilateration_fx8_1f`, directly publishing latitude, longitude, and tag (e.g., `P1` or `X4`) without smoothing.
+- **Post-Processed Data**:
+  - Adds filtered topics (`/FX8/multilateration_P1filtered` and `/FX8/multilateration_X4filtered`) with median latitude and longitude values.
+  - Data reduction via the median filter significantly reduces noise and message count.
+
+## **4. Median Filter Implementation**
+- **Purpose**: Smooth multilateration data by mitigating transient anomalies in raw measurements.
+- **Logic**:
+  - Maintains a sliding window of the last 20 latitude and longitude values.
+  - Calculates the median of each window and publishes the result to the corresponding filtered topic (`P1` or `X4`).
+- **Benefits**:
+  - Improves localization reliability for subsequent analysis.
+  - Reduces noise-induced variance in real-time estimations.
+
+## **5. Developer Impact**
+- **Real-Time Bag**: Ideal for raw data analysis and debugging sensor outputs.
+- **Post-Processed Bag**: Optimized for algorithms requiring stable and smoothed input, such as path planning or target localization.
+
+## **Conclusion**
+The post-processed bag provides cleaner, more reliable data for downstream applications, while the real-time bag retains the granularity necessary for diagnostic and algorithm development purposes.
+
